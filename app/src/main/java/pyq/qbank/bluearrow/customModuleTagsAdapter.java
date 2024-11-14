@@ -19,10 +19,16 @@ import java.util.List;
 public class customModuleTagsAdapter extends RecyclerView.Adapter<customModuleTagsAdapter.subjectCustomModuleViewHolder> {
     List<String> subjectList;
     List<String> selectedSubjectList;
+    private OnChildItemClickListener listener;
 
-    public customModuleTagsAdapter(List<String> subjectList) {
+    public interface OnChildItemClickListener {
+        void onItemClicked(String data);
+    }
+
+    public customModuleTagsAdapter(List<String> subjectList, OnChildItemClickListener listener) {
         this.subjectList = subjectList;
         this.selectedSubjectList = new ArrayList<>();
+        this.listener = listener;
     }
 
     @NonNull
@@ -42,7 +48,18 @@ public class customModuleTagsAdapter extends RecyclerView.Adapter<customModuleTa
 
         holder.subjectName.setText(red);
 
+        holder.arrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (listener != null) {
+                    listener.onItemClicked(red);
+                }
+
+            }
+        });
+
         holder.subjectName.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
 
@@ -72,12 +89,6 @@ public class customModuleTagsAdapter extends RecyclerView.Adapter<customModuleTa
             }
         });
 
-        holder.arrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(v.getContext(), red+" Clicked", Toast.LENGTH_SHORT).show();
-
-            }});
 
 
     }

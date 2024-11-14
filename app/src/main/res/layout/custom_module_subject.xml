@@ -19,6 +19,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:padding="10dp"
+            android:textColor="@color/black"
             android:text="Subject Name"
             android:textSize="18sp" />
 

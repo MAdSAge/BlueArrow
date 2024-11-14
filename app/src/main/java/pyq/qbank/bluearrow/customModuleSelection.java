@@ -2,12 +2,17 @@ package pyq.qbank.bluearrow;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,12 +22,16 @@ import com.google.android.flexbox.FlexboxLayoutManager;
 import java.util.ArrayList;
 import java.util.List;
 
-public class customModuleSelection extends AppCompatActivity {
+public class customModuleSelection extends AppCompatActivity implements customModuleTagsAdapter.OnChildItemClickListener{
 
     RecyclerView tagRecyclerView,subjectRecyclerView;
     tagsRVAdapter tagAdapter;
     customModuleTagsAdapter subjectAdapter;
     List<String> tagsList,subjectList;
+    LinearLayout linearLayout;
+    private FragmentTransaction fragmentTransaction;
+    TextView textView;
+
 
 
     @Override
@@ -36,8 +45,14 @@ public class customModuleSelection extends AppCompatActivity {
             return insets;
         });
 
+        textView = findViewById(R.id.tagTextView);
+
+
+
+
         hideSystemUI();
         //tag view setup----------------------------------------------------------------------------
+
         tagRecyclerView = findViewById(R.id.tagRecylerView);
         tagRecyclerView.setLayoutManager(new FlexboxLayoutManager(this));
 
@@ -48,9 +63,9 @@ public class customModuleSelection extends AppCompatActivity {
         tagsList.add("MOK");
         tagsList.add("Images");
         tagsList.add("PYQ");
-
         tagAdapter = new tagsRVAdapter(tagsList);
         tagRecyclerView.setAdapter(tagAdapter);
+
         //subject view setup------------------------------------------------------------------------
         subjectRecyclerView = findViewById(R.id.recyclerViewSubjects);
         subjectRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -64,7 +79,7 @@ public class customModuleSelection extends AppCompatActivity {
         subjectList.add("Pathology");
         subjectList.add("Microbiology");
 
-        subjectAdapter = new customModuleTagsAdapter(subjectList);
+        subjectAdapter = new customModuleTagsAdapter(subjectList,this);
         subjectRecyclerView.setAdapter(subjectAdapter);
         //
 
@@ -81,5 +96,26 @@ public class customModuleSelection extends AppCompatActivity {
                 | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION // Hide navigation bar
                 | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY; // Keep the UI hidden even after user interaction
         decorView.setSystemUiVisibility(uiOptions);
+    }
+
+    @Override
+    public void onItemClicked(String data) {
+        Toast.makeText(this, "if not7 working temp gone: " + data, Toast.LENGTH_SHORT).show();
+
+
+        textView.setVisibility(View.GONE);
+        Toast.makeText(this, "if not working temp gone: " + data, Toast.LENGTH_SHORT).show();
+
+        if (textView != null) {
+            textView.setVisibility(View.GONE);
+            Toast.makeText(this, "its temp gone: " + data, Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "its not gone: " + data, Toast.LENGTH_SHORT).show();
+
+        }
+
+//        linearLayout.setVisibility(View.GONE);
+
+
     }
 }
