@@ -1,0 +1,61 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/test_selection_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/background_color">
+
+    <!-- Spinner Section -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="12dp"
+        android:background="@drawable/generic_rounded_background"
+        android:elevation="6dp"
+        android:layout_marginBottom="5dp"
+        android:gravity="center_vertical">
+
+        <!-- Custom Year Spinner -->
+        <Spinner
+            android:padding="10dp"
+            android:id="@+id/subject_spinner"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:spinnerMode="dropdown"
+            android:theme="@style/CustomSpinnerStyle"
+            android:layout_width="0dp"
+            android:drawableRight="@drawable/ic_custom_arrow" />
+
+        <Space
+            android:layout_width="16dp"
+            android:layout_height="wrap_content" />
+
+        <!-- Custom Subject Spinner -->
+        <Spinner
+            android:padding="10dp"
+            android:layout_width="0dp"
+            android:id="@+id/year_spinner"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:spinnerMode="dropdown"
+            android:theme="@style/CustomSpinnerStyle"
+            android:drawableRight="@drawable/ic_custom_arrow" />
+
+    </LinearLayout>
+
+    <!-- RecyclerView Section -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/test_loader_Relative_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@drawable/generic_rounded_background"
+        android:elevation="6dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:clipToPadding="false"
+        android:scrollbars="vertical"/>
+
+</LinearLayout>

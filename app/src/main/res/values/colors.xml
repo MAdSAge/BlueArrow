@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+ <!-- Primary Colors -->
+ <color name="primary">#1976D2</color>
+ <color name="purple_200">#4A148C</color>
+ <color name="purple_500">#9C27B0</color>
+ <color name="purple_700">#311B92</color>
+
+ <!-- Accent Colors -->
+ <color name="teal_200">#03DAC5</color>
+ <color name="teal_700">#018786</color>
+ <color name="button_color">#4CAF50</color>
+
+ <!-- Neutral Colors -->
+ <color name="white">#FFFFFF</color>
+ <color name="black">#000000</color>
+ <color name="gray">#757575</color>
+ <color name="light_gray">#F6F3F3</color>
+ <color name="light_green">#8BC34A</color>
+ <color name="light_green_dark">#388E3C</color>
+
+
+ <!-- Semantic Colors -->
+ <color name="background_color">#F5F5F5</color>
+ <color name="button_text_color">#FFFFFF</color>
+
+ <color name="primary_text">#DE000000</color>
+ <color name="secondary_text">#8A000000</color>
+ <color name="card_border">#E0E0E0</color>
+
+  <color name="tag_background">#FFEB3B</color> <!-- Yellow background -->
+  <color name="tag_text_color">#000000</color> <!-- Black text -->
+
+
+</resources>

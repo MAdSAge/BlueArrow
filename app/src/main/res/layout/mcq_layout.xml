@@ -1,0 +1,128 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- Question Title -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingEnd="5dp">
+
+            <ImageView
+                android:layout_marginRight="20dp"
+                android:id="@+id/filter"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/filter"
+                app:tint="@color/primary"
+                android:visibility="gone"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Filter button" />
+
+            <TextView
+                android:id="@+id/question_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Sample Question?"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="16dp" />
+
+
+            <ImageView
+                android:id="@+id/bookMark"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ribbon"
+                app:tint="@color/primary"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Ribbon button" />
+
+
+        </LinearLayout>
+
+        <WebView
+            android:id="@+id/question_add"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="fitCenter"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="@color/white"
+            android:padding="10dp"/>
+
+        <!-- Question Image (Optional) -->
+        <WebView
+            android:id="@+id/question_img"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="fitCenter"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="@color/white"
+            android:padding="10dp"/>
+
+        <!-- Options as Buttons -->
+        <Button
+            android:id="@+id/optionA"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Option A"
+            android:layout_marginBottom="8dp"
+            app:tint="@color/primary"
+            android:backgroundTint="@color/white"
+            android:textColor="@android:color/black"
+            android:padding="15dp" />
+
+        <Button
+            android:id="@+id/optionB"
+
+            android:backgroundTint="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Option B"
+            android:layout_marginBottom="8dp"
+            app:tint="@color/primary"
+            android:textColor="@android:color/black"
+            android:padding="15dp" />
+
+        <Button
+            android:id="@+id/optionC"
+            android:backgroundTint="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Option C"
+            android:layout_marginBottom="8dp"
+            app:tint="@color/primary"
+            android:textColor="@android:color/black"
+            android:padding="15dp" />
+
+        <Button
+            android:id="@+id/optionD"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Option D"
+            android:backgroundTint="@color/white"
+            android:layout_marginBottom="8dp"
+            app:tint="@color/primary"
+            android:textColor="@android:color/black"
+            android:padding="15dp" />
+
+        <!-- Explanation Text (Optional) -->
+        <WebView
+            android:id="@+id/explanation"
+            android:backgroundTint="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="16dp"
+            android:visibility="gone"/>
+    </LinearLayout>
+
+</ScrollView>

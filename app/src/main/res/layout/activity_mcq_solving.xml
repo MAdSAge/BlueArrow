@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Scrollable content inside NestedScrollView -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_marginBottom="80dp"
+        android:id="@+id/mcqSolving"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:fillViewport="true">
+
+        <!-- Vertical LinearLayout wrapping all scrollable content -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="1dp">
+
+            <!-- RecyclerView for displaying topic cards horizontally -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/mcqRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- Fixed position for buttons at the bottom of the screen -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:outlineAmbientShadowColor="@color/primary"
+        android:layout_alignParentBottom="true"
+        android:padding="5dp">
+
+        <Button
+            android:id="@+id/previousButton"
+            android:layout_margin="1dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="8dp"
+            android:visibility="gone"
+
+            android:backgroundTint="@color/primary"
+            android:text="Previous"/>
+
+        <Button
+
+            android:id="@+id/nextButton"
+            android:padding="8dp"
+            android:layout_margin="1dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/primary"
+            android:layout_weight="1"
+            android:text="Next"/>
+    </LinearLayout>
+
+</RelativeLayout>
