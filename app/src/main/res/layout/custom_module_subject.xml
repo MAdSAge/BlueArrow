@@ -13,29 +13,32 @@
         android:background="@color/white">
 
         <!-- TextView for Subject Name -->
+           <TextView
+            android:id="@+id/customModuleSubjectName"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textAlignment="textStart"
+            android:padding="10dp"
+            android:textColor="@color/black"
+            android:text="◀ ️Subject Name"
+
+            android:textSize="18sp" />
+
         <Button
             android:id="@+id/customModuleArrow"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:backgroundTint="@color/white"
             android:gravity="center"
-            android:text="◀"
+            android:text="✔ ️️"
             android:textColor="@color/primary"
             android:textSize="20sp"
             app:rippleColor="@color/primary"
             android:elevation="0dp"
             android:outlineSpotShadowColor="@android:color/transparent"
             android:outlineAmbientShadowColor="@android:color/transparent" />
-        <TextView
-            android:id="@+id/customModuleSubjectName"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:textAlignment="textEnd"
-            android:padding="10dp"
-            android:textColor="@color/black"
-            android:text="Subject Name"
-            android:textSize="18sp" />
+
 
         <!-- Button with no elevation (flat appearance) -->
 

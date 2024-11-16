@@ -1,5 +1,6 @@
 package pyq.qbank.bluearrow;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -17,11 +18,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.flexbox.FlexboxLayoutManager;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.Set;
 
 
 public class customModuleSelection extends AppCompatActivity implements customModuleSubjectsAdapter.transferSubjectData,customModuleSubjectsAdapter.loadChapterRecycler, customModuleTagsAdapter.transferTagData, customModuleChapterAdapter.transferChapterData {
@@ -31,7 +34,7 @@ public class customModuleSelection extends AppCompatActivity implements customMo
     RecyclerView tagRecyclerView, subjectRecyclerView, chapterRecyclerView;
     LinearLayout linearLayout, hiddenLayout;
     TextView textView,chapterRecylerTextView;
-    Button nextButton;
+    Button nextButton,hiddenChapterAcceptButton;
     CheckBox checkboxAllMcqs, checkboxQbankMcqs, checkboxBookmarkedMcqs, checkboxTestMcqs, checkboxMistakeMcqs;
 
     //Adapters
@@ -46,9 +49,16 @@ public class customModuleSelection extends AppCompatActivity implements customMo
     List<String> recivedTagList, recivedSubjectList;
     Map<String,List<String>> receivedChapterList;
     String subjectNameForRecycler;
+    List<String> checkedCheckboxes;
 
-    //Interfaces created
-    sendSelectedChaptersData chapterListener;
+    //interface trial1
+
+
+
+
+
+
+
 
 
     @Override
@@ -71,18 +81,23 @@ public class customModuleSelection extends AppCompatActivity implements customMo
         tagRecyclerView = findViewById(R.id.tagRecylerView);
         subjectRecyclerView = findViewById(R.id.recyclerViewSubjects);
         nextButton = findViewById(R.id.customModuleNext);
+
         checkboxAllMcqs = findViewById(R.id.checkboxAllMcqs);
         checkboxQbankMcqs = findViewById(R.id.checkboxQbankMcqs);
         checkboxBookmarkedMcqs = findViewById(R.id.checkboxBookmarkedMcqs);
         checkboxTestMcqs = findViewById(R.id.checkboxTestMcqs);
+
         checkboxMistakeMcqs = findViewById(R.id.checkboxMistakeMcqs);
+        hiddenChapterAcceptButton = findViewById(R.id.hiddenChapterAcceptButton);
 
         //Initializing the Received List-------------------------------------------------------------
 
         receivedChapterList = new HashMap<>();
         recivedTagList = new ArrayList<>();
         recivedSubjectList = new ArrayList<>();
-        chapterListener = this;
+        checkedCheckboxes = new ArrayList<>();
+
+
 
 
 
@@ -133,19 +148,60 @@ public class customModuleSelection extends AppCompatActivity implements customMo
             }
         });
 
+        hiddenChapterAcceptButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                hiddenLayout.setVisibility(View.GONE);
+                linearLayout.setVisibility(View.VISIBLE);
+
+            }
+        });
+
+        ///interface
+
 
 
 
 
     }
 
+
+
+
     private void getAllSelectedChoices() {
 
+        Map<String,List<String>> red = new HashMap<>();
+        red.put("tags",recivedTagList);
 
+        getChekBoxStringIfCheked();
+        red.put("checkboxes",checkedCheckboxes);
 
+        List<String> subjects = recivedSubjectList;
 
+        Set<String> test = receivedChapterList.keySet();
 
-        System.out.println(receivedChapterList);
+        for (String t:test
+             ) {
+            if(subjects.contains(t)){
+                subjects.remove(t);
+            }
+
+        }
+        red.put("subjects",subjects);
+        for (Map.Entry<String, List<String>> entry : receivedChapterList.entrySet()) {
+            red.put(entry.getKey(), entry.getValue());
+        }
+
+        System.out.println(red);
+
+        Intent intent = new Intent(customModuleSelection.this, mcq_solving.class);
+        intent.putExtra("data",(Serializable) red);
+
+        // TODO: generate a query string to pass the activity insted of data after completing the Data base set UP
+        startActivity(intent);
+
+        
+        
 
     }
 
@@ -179,7 +235,7 @@ public class customModuleSelection extends AppCompatActivity implements customMo
     @Override
     public void transferChapters(String red, List<String> data) {
         receivedChapterList.put(red,data);
-        chapterListener.sendSelectedChapters(receivedChapterList);
+//        chapterAdapter.notifyDataSetChanged();
     }
 
     //display the chapter selection layout on subject button click
@@ -196,29 +252,14 @@ public class customModuleSelection extends AppCompatActivity implements customMo
 
 
         List<String> chapterList = new ArrayList<>();
-        chapterList.add(randomString());
-        chapterList.add(randomString());
-        chapterList.add(randomString());
-        chapterList.add(randomString());
-        chapterList.add(randomString());
-        chapterList.add(randomString());
-        chapterList.add(randomString());
-        chapterList.add(randomString());
-        chapterList.add(randomString());
-        chapterList.add(randomString());
-        chapterList.add(randomString());
-        chapterList.add(randomString());
-        chapterList.add(randomString());
-        chapterList.add(randomString());
-        chapterList.add(randomString());
-        chapterList.add(randomString());
-        chapterList.add(randomString());
-        chapterList.add(randomString());
-        chapterList.add(randomString());
-        chapterList.add(randomString());
-        chapterList.add(randomString());
+        chapterList.add("anatomy");
+        chapterList.add("Biocheistry");
+        chapterList.add("redme");
+        chapterList.add("weel spun");
+        chapterList.add("sell");
+        chapterList.add("road show");
 
-        chapterAdapter = new customModuleChapterAdapter(chapterList, this, subjectNameForRecycler);
+        chapterAdapter = new customModuleChapterAdapter(chapterList, this, subjectNameForRecycler,receivedChapterList);
         chapterRecyclerView.setAdapter(chapterAdapter);
 
         chapterAdapter.notifyDataSetChanged();
@@ -234,6 +275,29 @@ public class customModuleSelection extends AppCompatActivity implements customMo
         String randomText = sb.toString();
         return randomText;
     }
+
+    private void getChekBoxStringIfCheked(){
+
+        if(checkboxAllMcqs.isChecked()){
+            checkedCheckboxes.add("All");
+        }
+        if(checkboxQbankMcqs.isChecked()){
+            checkedCheckboxes.add("Qbank");
+
+        }
+        if(checkboxBookmarkedMcqs.isChecked()) {
+            checkedCheckboxes.add("Bookmarked");
+        }
+        if(checkboxTestMcqs.isChecked()){
+            checkedCheckboxes.add("Test");
+        }
+        if(checkboxMistakeMcqs.isChecked()){
+            checkedCheckboxes.add("Mistake");
+        }
+
+
+    }
+
 
 
 }

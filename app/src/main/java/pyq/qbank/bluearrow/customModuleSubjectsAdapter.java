@@ -1,5 +1,6 @@
 package pyq.qbank.bluearrow;
 
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,17 +14,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-public class customModuleSubjectsAdapter extends RecyclerView.Adapter<customModuleSubjectsAdapter.subjectCustomModuleViewHolder>  {
+public class customModuleSubjectsAdapter extends RecyclerView.Adapter<customModuleSubjectsAdapter.subjectCustomModuleViewHolder> {
 
     public List<String> selectedSubjectList;
     List<String> subjectList;
     private transferSubjectData subjectData;
     private loadChapterRecycler chapterListener;
-
-
-
 
 
     public customModuleSubjectsAdapter(List<String> subjectList, transferSubjectData subjectData, loadChapterRecycler chapterListener) {
@@ -48,44 +45,38 @@ public class customModuleSubjectsAdapter extends RecyclerView.Adapter<customModu
 
         String red = subjectList.get(position);
 
-        holder.subjectName.setText(red);
+        holder.subjectName.setText("◀  ️"+red);
 
-
-        holder.arrow.setOnClickListener(new View.OnClickListener() {
+        holder.subjectName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                String subjectName = holder.subjectName.getText().toString();
-                chapterListener.loadChapterRecycler(subjectName);
-                selectedSubjectList.remove(subjectName);
-                holder.subjectName.setBackgroundColor(ContextCompat.getColor(holder.subjectName.getContext(), R.color.white)); // Set the original color
-                holder.subjectName.setTextColor(ContextCompat.getColor(holder.subjectName.getContext(), R.color.black));
-                subjectData.transferSubjects(selectedSubjectList);
+                chapterListener.loadChapterRecycler(red);
+                holder.subjectName.setText(Html.fromHtml("<u><b>"+red+"</b></u?",Html.FROM_HTML_MODE_LEGACY));
+
+
 
             }
         });
 
 
-        holder.subjectName.setOnClickListener(new View.OnClickListener() {
+        holder.arrow.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
 
-                String tagText = holder.subjectName.getText().toString();
 
-                if (selectedSubjectList.contains(tagText)) {
-                    // If the tag is already selected, remove it from the list and reset the button color
-                    selectedSubjectList.remove(tagText);
-                    holder.subjectName.setBackgroundColor(ContextCompat.getColor(holder.subjectName.getContext(), R.color.white)); // Set the original color
+                if (selectedSubjectList.contains(red)) {
+                    selectedSubjectList.remove(red);
+                    holder.subjectName.setBackgroundColor(ContextCompat.getColor(holder.subjectName.getContext(), R.color.white)); // Set the selected color
                     holder.subjectName.setTextColor(ContextCompat.getColor(holder.subjectName.getContext(), R.color.black));
-
                     holder.arrow.setTextColor(ContextCompat.getColor(holder.arrow.getContext(), R.color.primary));
                     holder.arrow.setBackgroundColor(ContextCompat.getColor(holder.arrow.getContext(), R.color.white));
                     holder.extra.setBackgroundColor(ContextCompat.getColor(holder.extra.getContext(), R.color.white));
-                    // Set the original text color
+
                 } else {
                     // If the tag is not selected, add it to the list and change the button color
-                    selectedSubjectList.add(tagText);
+                    selectedSubjectList.add(red);
                     holder.subjectName.setBackgroundColor(ContextCompat.getColor(holder.subjectName.getContext(), R.color.primary)); // Set the selected color
                     holder.subjectName.setTextColor(ContextCompat.getColor(holder.subjectName.getContext(), R.color.white));
                     holder.arrow.setTextColor(ContextCompat.getColor(holder.arrow.getContext(), R.color.white));
@@ -108,8 +99,6 @@ public class customModuleSubjectsAdapter extends RecyclerView.Adapter<customModu
     }
 
 
-
-
     public interface transferSubjectData {
         void transferSubjects(List<String> red);
 
@@ -119,7 +108,6 @@ public class customModuleSubjectsAdapter extends RecyclerView.Adapter<customModu
 
         void loadChapterRecycler(String subjectName);
     }
-
 
 
     public class subjectCustomModuleViewHolder extends RecyclerView.ViewHolder {

@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class customModuleChapterAdapter extends RecyclerView.Adapter<customModuleChapterAdapter.chapterCustomModuleViewHolder>implements sendSelectedChaptersData {
+public class customModuleChapterAdapter extends RecyclerView.Adapter<customModuleChapterAdapter.chapterCustomModuleViewHolder> {
 
     List<String> chapterList;
     List<String> selectedChapterList;
@@ -23,26 +23,28 @@ public class customModuleChapterAdapter extends RecyclerView.Adapter<customModul
     Map<String,List<String>> receivedChapterList;
 
 
-    @Override
-    public void sendSelectedChapters(Map<String, List<String>> data) {
-        receivedChapterList = data;
-    }
+
+
+
 
     public interface transferChapterData {
         void transferChapters(String subjectName, List<String> data);
+
     }
 
-    public customModuleChapterAdapter(List<String> chapterList, transferChapterData listener, String subjectName) {
+    public customModuleChapterAdapter(List<String> chapterList, transferChapterData listener, String subjectName, Map<String, List<String>> receivedChapterList) {
         this.chapterList = chapterList;
         this.selectedChapterList = new ArrayList<>();
         this.listener = listener;
         this.subjectName = subjectName;
-        this.receivedChapterList = new HashMap<>();
+        this.receivedChapterList = receivedChapterList;
     }
 
     @NonNull
     @Override
     public customModuleChapterAdapter.chapterCustomModuleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        List<String> chapters = receivedChapterList.get(subjectName);
+        selectedChapterList = (chapters != null) ? chapters : new ArrayList<>();
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.chapter_select_chekboxes, parent, false);
         return new chapterCustomModuleViewHolder(itemView);
@@ -67,6 +69,9 @@ public class customModuleChapterAdapter extends RecyclerView.Adapter<customModul
         String Chapter_name = chapterList.get(position);
 
         List<String> rchapterList = receivedChapterList.get(subjectName);
+        System.out.println(receivedChapterList);
+        System.out.println(rchapterList+"hello her");
+
         if (rchapterList != null && rchapterList.contains(Chapter_name)) {
             holder.checkBox.setChecked(true);
         } else {
