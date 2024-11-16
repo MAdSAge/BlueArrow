@@ -2,40 +2,58 @@ package pyq.qbank.bluearrow;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.flexbox.FlexboxLayoutManager;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Random;
 
-public class customModuleSelection extends AppCompatActivity implements customModuleTagsAdapter.OnChildItemClickListener{
 
-    RecyclerView tagRecyclerView,subjectRecyclerView;
-    tagsRVAdapter tagAdapter;
-    customModuleTagsAdapter subjectAdapter;
-    List<String> tagsList,subjectList;
-    LinearLayout linearLayout;
-    private FragmentTransaction fragmentTransaction;
-    TextView textView;
+public class customModuleSelection extends AppCompatActivity implements customModuleSubjectsAdapter.transferSubjectData,customModuleSubjectsAdapter.loadChapterRecycler, customModuleTagsAdapter.transferTagData, customModuleChapterAdapter.transferChapterData {
 
+
+    //UI elements
+    RecyclerView tagRecyclerView, subjectRecyclerView, chapterRecyclerView;
+    LinearLayout linearLayout, hiddenLayout;
+    TextView textView,chapterRecylerTextView;
+    Button nextButton;
+    CheckBox checkboxAllMcqs, checkboxQbankMcqs, checkboxBookmarkedMcqs, checkboxTestMcqs, checkboxMistakeMcqs;
+
+    //Adapters
+    customModuleTagsAdapter tagAdapter;
+    customModuleSubjectsAdapter subjectAdapter;
+    customModuleChapterAdapter chapterAdapter;
+
+    //Data passed to adapters
+    List<String> tagsList, subjectList;
+
+    //Data received from adapters
+    List<String> recivedTagList, recivedSubjectList;
+    Map<String,List<String>> receivedChapterList;
+    String subjectNameForRecycler;
+
+    //Interfaces created
+    sendSelectedChaptersData chapterListener;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.custom_module_layout);
@@ -45,33 +63,50 @@ public class customModuleSelection extends AppCompatActivity implements customMo
             return insets;
         });
 
+
+        //Initializing the UI Elements--------------------------------------------------------------
         textView = findViewById(R.id.tagTextView);
-
-
-
-
-        hideSystemUI();
-        //tag view setup----------------------------------------------------------------------------
-
+        linearLayout = findViewById(R.id.leftLinearLayout);
+        hiddenLayout = findViewById(R.id.hiddenLinearLayout);
         tagRecyclerView = findViewById(R.id.tagRecylerView);
+        subjectRecyclerView = findViewById(R.id.recyclerViewSubjects);
+        nextButton = findViewById(R.id.customModuleNext);
+        checkboxAllMcqs = findViewById(R.id.checkboxAllMcqs);
+        checkboxQbankMcqs = findViewById(R.id.checkboxQbankMcqs);
+        checkboxBookmarkedMcqs = findViewById(R.id.checkboxBookmarkedMcqs);
+        checkboxTestMcqs = findViewById(R.id.checkboxTestMcqs);
+        checkboxMistakeMcqs = findViewById(R.id.checkboxMistakeMcqs);
+
+        //Initializing the Received List-------------------------------------------------------------
+
+        receivedChapterList = new HashMap<>();
+        recivedTagList = new ArrayList<>();
+        recivedSubjectList = new ArrayList<>();
+        chapterListener = this;
+
+
+
+        //remove un-wanted Ui elements and initial state--------------------------------------------
+        hideSystemUI();
+
+        //Tag Recycler View Setup-------------------------------------------------------------------
         tagRecyclerView.setLayoutManager(new FlexboxLayoutManager(this));
 
-        tagsList = new ArrayList<String>();
+        tagsList = new ArrayList<>();
         tagsList.add("All");
         tagsList.add("GRAND");
         tagsList.add("INICET");
         tagsList.add("MOK");
         tagsList.add("Images");
         tagsList.add("PYQ");
-        tagAdapter = new tagsRVAdapter(tagsList);
+
+        tagAdapter = new customModuleTagsAdapter(tagsList, this);
         tagRecyclerView.setAdapter(tagAdapter);
 
         //subject view setup------------------------------------------------------------------------
-        subjectRecyclerView = findViewById(R.id.recyclerViewSubjects);
         subjectRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-
-        subjectList = new ArrayList<String>();
+        subjectList = new ArrayList<>();
         subjectList.add("All");
         subjectList.add("Anatomy");
         subjectList.add("Physiology");
@@ -79,17 +114,44 @@ public class customModuleSelection extends AppCompatActivity implements customMo
         subjectList.add("Pathology");
         subjectList.add("Microbiology");
 
-        subjectAdapter = new customModuleTagsAdapter(subjectList,this);
+        subjectAdapter = new customModuleSubjectsAdapter(subjectList, this, this);
         subjectRecyclerView.setAdapter(subjectAdapter);
-        //
 
+        //Chapter Recycler View Setup---------------------------------------------------------------
+        //this view is gone state default
+
+        chapterRecylerTextView = findViewById(R.id.hiddenTextView);
+        chapterRecyclerView = findViewById(R.id.hiddenChapterRecyclerView);
+        chapterRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        //adding the button click functionality to start the test-----------------------------------
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //start the test
+                getAllSelectedChoices();
+            }
+        });
+
+
+
+
+
+    }
+
+    private void getAllSelectedChoices() {
+
+
+
+
+
+        System.out.println(receivedChapterList);
 
     }
 
     private void hideSystemUI() {
 
         getSupportActionBar().hide();
-
         // Set the flags to hide both the status bar and navigation bar
         View decorView = getWindow().getDecorView();
         int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN // Hide status bar
@@ -98,24 +160,80 @@ public class customModuleSelection extends AppCompatActivity implements customMo
         decorView.setSystemUiVisibility(uiOptions);
     }
 
+
+    //Interfaces implementations--------------------------------------------------------------------
+    //Receive the selected subjects
     @Override
-    public void onItemClicked(String data) {
-        Toast.makeText(this, "if not7 working temp gone: " + data, Toast.LENGTH_SHORT).show();
+    public void transferSubjects(List<String> red) {
+        recivedSubjectList = red;
+    }
 
-
-        textView.setVisibility(View.GONE);
-        Toast.makeText(this, "if not working temp gone: " + data, Toast.LENGTH_SHORT).show();
-
-        if (textView != null) {
-            textView.setVisibility(View.GONE);
-            Toast.makeText(this, "its temp gone: " + data, Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(this, "its not gone: " + data, Toast.LENGTH_SHORT).show();
-
-        }
-
-//        linearLayout.setVisibility(View.GONE);
-
+    //Receive the data from the Tag Selected
+    @Override
+    public void transferTags(List<String> selectedTags) {
+        recivedTagList = selectedTags;
 
     }
+
+    //Receive the data : selected chapters
+    @Override
+    public void transferChapters(String red, List<String> data) {
+        receivedChapterList.put(red,data);
+        chapterListener.sendSelectedChapters(receivedChapterList);
+    }
+
+    //display the chapter selection layout on subject button click
+    @Override
+    public void loadChapterRecycler(String subjectName) {
+        //load the chapter recycler view with data
+        subjectNameForRecycler = subjectName;
+
+
+        linearLayout.setVisibility(View.GONE);
+        hiddenLayout.setVisibility(View.VISIBLE);
+        chapterRecylerTextView.setText(subjectName);
+
+
+
+        List<String> chapterList = new ArrayList<>();
+        chapterList.add(randomString());
+        chapterList.add(randomString());
+        chapterList.add(randomString());
+        chapterList.add(randomString());
+        chapterList.add(randomString());
+        chapterList.add(randomString());
+        chapterList.add(randomString());
+        chapterList.add(randomString());
+        chapterList.add(randomString());
+        chapterList.add(randomString());
+        chapterList.add(randomString());
+        chapterList.add(randomString());
+        chapterList.add(randomString());
+        chapterList.add(randomString());
+        chapterList.add(randomString());
+        chapterList.add(randomString());
+        chapterList.add(randomString());
+        chapterList.add(randomString());
+        chapterList.add(randomString());
+        chapterList.add(randomString());
+        chapterList.add(randomString());
+
+        chapterAdapter = new customModuleChapterAdapter(chapterList, this, subjectNameForRecycler);
+        chapterRecyclerView.setAdapter(chapterAdapter);
+
+        chapterAdapter.notifyDataSetChanged();
+    }
+
+
+    private String randomString(){
+        Random random = new Random();
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < 10; i++) {
+            sb.append((char) (random.nextInt(26) + 'a'));
+        }
+        String randomText = sb.toString();
+        return randomText;
+    }
+
+
 }
