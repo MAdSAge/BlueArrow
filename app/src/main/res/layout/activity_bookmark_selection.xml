@@ -1,0 +1,63 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="15dp"
+    android:layout_margin="5dp"
+    android:id="@+id/bookmarkSelection">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/subjectCard"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="2dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="16dp">
+
+
+
+                <TextView
+                    android:layout_weight="0.9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="All bookMarks"
+                    android:layout_marginStart="8dp"
+                    android:textSize="26sp" />
+                <ImageView
+
+                    android:layout_width="40dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/ribbon_selected" />
+            </LinearLayout>
+
+
+
+
+
+        </LinearLayout>
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/bookmarkSubjects"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="8dp" />
+</LinearLayout>

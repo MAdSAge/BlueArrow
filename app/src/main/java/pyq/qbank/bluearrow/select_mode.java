@@ -41,6 +41,7 @@ public class select_mode extends AppCompatActivity {
         cardMiniTest = findViewById(R.id.cardMiniTest);
         cardSubjectTest = findViewById(R.id.cardSubjectTest);
         cardCustomModules = findViewById(R.id.cardCustomModules);
+        cardBookmarks = findViewById(R.id.cardBookmarks);
 
 
         //Qbank card route
@@ -81,12 +82,12 @@ public class select_mode extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(select_mode.this, testSelection.class);
                 startActivity(intent);}});
-
-
-
-
-
-
+        //BookMark Card route
+        cardBookmarks.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(select_mode.this, bookmarkSelection.class);
+                startActivity(intent);}});
 
     }
 

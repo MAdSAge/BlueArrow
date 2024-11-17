@@ -15,13 +15,7 @@
         android:orientation="horizontal"
         android:padding="16dp">
 
-        <ImageView
-            android:id="@+id/icon"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_margin="3dp"
-            android:src="@drawable/question_sign"
-            app:tint="@color/primary" />
+
 
         <LinearLayout
             android:layout_width="0dp"
@@ -55,7 +49,9 @@
                     android:drawablePadding="4dp"
                     android:text="45 chapters"
                     android:textSize="12sp" />
+
             </LinearLayout>
+
         </LinearLayout>
 
         <com.google.android.material.progressindicator.CircularProgressIndicator
@@ -65,5 +61,12 @@
             android:layout_gravity="center_vertical"
             app:indicatorSize="48dp"
             app:trackThickness="4dp" />
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_margin="3dp"
+            android:src="@drawable/question_sign"
+            app:tint="@color/primary" />
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

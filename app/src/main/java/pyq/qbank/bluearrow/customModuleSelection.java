@@ -51,15 +51,6 @@ public class customModuleSelection extends AppCompatActivity implements customMo
     String subjectNameForRecycler;
     List<String> checkedCheckboxes;
 
-    //interface trial1
-
-
-
-
-
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,9 +87,6 @@ public class customModuleSelection extends AppCompatActivity implements customMo
         recivedTagList = new ArrayList<>();
         recivedSubjectList = new ArrayList<>();
         checkedCheckboxes = new ArrayList<>();
-
-
-
 
 
         //remove un-wanted Ui elements and initial state--------------------------------------------
