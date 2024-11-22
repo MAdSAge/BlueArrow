@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+//TODO: add a filter based on the lesson in chapter view
 public class chapter_model_adapter extends RecyclerView.Adapter<chapter_model_adapter.chapterViewHolder>{
 
     private List<chapter_model> topicList;
@@ -34,8 +35,9 @@ public class chapter_model_adapter extends RecyclerView.Adapter<chapter_model_ad
         chapter_model topic = topicList.get(position);
 
         holder.title.setText(topic.getChapterName());
-        holder.questionCount.setText(String.valueOf(topic.getChapterQuestionCount())+" Questions");
+        holder.questionCount.setText(String.valueOf(topic.getChapterQuestionCount())+" Q");
         holder.progressBar.setProgress(topic.getProgress());
+        holder.ribbonTextView.setText("Topic: "+topic.getLesson());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,7 +58,7 @@ public class chapter_model_adapter extends RecyclerView.Adapter<chapter_model_ad
 
     public class chapterViewHolder extends RecyclerView.ViewHolder {
 
-        TextView title;
+        TextView title,ribbonTextView;
         TextView questionCount;
         ProgressBar progressBar;
 
@@ -65,6 +67,7 @@ public class chapter_model_adapter extends RecyclerView.Adapter<chapter_model_ad
             title = itemView.findViewById(R.id.chapterTitle);
             questionCount = itemView.findViewById(R.id.cahpterQuestions);
             progressBar = itemView.findViewById(R.id.chapterProgressIndicator);
+            ribbonTextView = itemView.findViewById(R.id.ribbonTextView);
 
         }
     }

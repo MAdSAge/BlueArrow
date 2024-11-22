@@ -108,15 +108,35 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="38b0b558-b842-4d69-abbd-657f896d42e9" name="Changes" comment="Finished custom module UI set UP">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/pyq/qbank/bluearrow/bookMarkSelectionAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/pyq/qbank/bluearrow/bookmarkSelection.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/chevron.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_bookmark_selection.xml" afterDir="false" />
+    <list default="true" id="38b0b558-b842-4d69-abbd-657f896d42e9" name="Changes" comment="finished setting up basic UI">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/pyq/qbank/bluearrow/DataImporter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/pyq/qbank/bluearrow/MyApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/pyq/qbank/bluearrow/ObjectBox.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/pyq/qbank/bluearrow/iconOrderLoader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/pyq/qbank/bluearrow/jsonLoader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/pyq/qbank/bluearrow/test_model.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/tag.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/pyq/qbank/bluearrow/customModuleSelection.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/pyq/qbank/bluearrow/customModuleSelection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/pyq/qbank/bluearrow/chapter_model.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/pyq/qbank/bluearrow/chapter_model.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/pyq/qbank/bluearrow/chapter_model_adapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/pyq/qbank/bluearrow/chapter_model_adapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/pyq/qbank/bluearrow/mcq_model.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/pyq/qbank/bluearrow/mcq_model.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/pyq/qbank/bluearrow/mcq_solving.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/pyq/qbank/bluearrow/mcq_solving.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/pyq/qbank/bluearrow/qbankChapterSelection.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/pyq/qbank/bluearrow/qbankChapterSelection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/pyq/qbank/bluearrow/qbankSubjectSelection.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/pyq/qbank/bluearrow/qbankSubjectSelection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/pyq/qbank/bluearrow/select_mode.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/pyq/qbank/bluearrow/select_mode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/pyq/qbank/bluearrow/subject_model.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/pyq/qbank/bluearrow/subject_model.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/pyq/qbank/bluearrow/subject_model_adapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/pyq/qbank/bluearrow/subject_model_adapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/pyq/qbank/bluearrow/testSelection.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/pyq/qbank/bluearrow/testSelection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_qbank_chapter_selection.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_qbank_chapter_selection.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_select_mode.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_select_mode.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_test_selection.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_test_selection.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/chapter_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/chapter_layout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/subject_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/subject_layout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/libs.versions.toml" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/libs.versions.toml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -137,6 +157,44 @@
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
     </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$/app">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="BlueArrow" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="BlueArrow" type="f1a62948:ProjectNode" />
+                <item name="app" type="2d1252cf:ModuleNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="BlueArrow" type="f1a62948:ProjectNode" />
+                <item name="app" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="BlueArrow" type="f1a62948:ProjectNode" />
+                <item name="app" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="other" type="c8890929:TasksNode$1" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -182,25 +240,25 @@
     <option name="showVisibilityIcons" value="true" />
     <option name="sortKey" value="BY_TIME_DESCENDING" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Android App.app.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "RunOnceActivity.readMode.enableVisualFormatting": "true",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/docab/Desktop/go/pace/BlueArrow",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.17",
-    "project.structure.side.proportion": "0.2",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Android App.app.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/docab/Desktop/go/pace/BlueArrow&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Dependencies&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.17&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;device.mirroring&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="android.template.406922857">
       <recent name="pyq.qbank.bluearrow" />
@@ -346,7 +404,15 @@
       <option name="project" value="LOCAL" />
       <updated>1731754080376</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="finished setting up basic UI">
+      <option name="closed" value="true" />
+      <created>1731814252223</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1731814252223</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -365,7 +431,8 @@
     <MESSAGE value="interface chnages are working thank god" />
     <MESSAGE value="how to implimnet a interfaces properly" />
     <MESSAGE value="Finished custom module UI set UP" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finished custom module UI set UP" />
+    <MESSAGE value="finished setting up basic UI" />
+    <option name="LAST_COMMIT_MESSAGE" value="finished setting up basic UI" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -477,37 +544,37 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/pyq/qbank/bluearrow/bookmarkSelection.java</url>
-          <line>36</line>
+          <line>39</line>
           <option name="timeStamp" value="33" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/pyq/qbank/bluearrow/bookmarkSelection.java</url>
-          <line>37</line>
+          <line>40</line>
           <option name="timeStamp" value="34" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/pyq/qbank/bluearrow/bookmarkSelection.java</url>
-          <line>39</line>
+          <line>42</line>
           <option name="timeStamp" value="35" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/pyq/qbank/bluearrow/bookmarkSelection.java</url>
-          <line>38</line>
+          <line>41</line>
           <option name="timeStamp" value="36" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/pyq/qbank/bluearrow/bookmarkSelection.java</url>
-          <line>40</line>
+          <line>43</line>
           <option name="timeStamp" value="37" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/pyq/qbank/bluearrow/bookmarkSelection.java</url>
-          <line>41</line>
+          <line>44</line>
           <option name="timeStamp" value="38" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/pyq/qbank/bluearrow/bookmarkSelection.java</url>
-          <line>43</line>
+          <line>46</line>
           <option name="timeStamp" value="39" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -527,12 +594,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/pyq/qbank/bluearrow/bookMarkSelectionAdapter.java</url>
-          <line>37</line>
+          <line>36</line>
           <option name="timeStamp" value="44" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/pyq/qbank/bluearrow/bookMarkSelectionAdapter.java</url>
-          <line>38</line>
+          <line>37</line>
           <option name="timeStamp" value="45" />
         </line-breakpoint>
       </breakpoints>

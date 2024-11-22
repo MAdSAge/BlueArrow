@@ -7,6 +7,11 @@ appcompat = "1.7.0"
 material = "1.12.0"
 activity = "1.9.2"
 constraintlayout = "2.1.4"
+gson = "2.11.0"
+picasso = "2.71828"
+glide = "5.0.0-rc01"
+compiler = "5.0.0-rc01"
+couchbaseLiteAndroidEeKtx = "3.2.1"
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -16,6 +21,11 @@ appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "a
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
+picasso = { group = "com.squareup.picasso", name = "picasso", version.ref = "picasso" }
+glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" }
+compiler = { group = "com.github.bumptech.glide", name = "compiler", version.ref = "compiler" }
+couchbase-lite-android-ee-ktx = { group = "com.couchbase.lite", name = "couchbase-lite-android-ee-ktx", version.ref = "couchbaseLiteAndroidEeKtx" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

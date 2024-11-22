@@ -1,5 +1,8 @@
 package pyq.qbank.bluearrow;
 
+import static pyq.qbank.bluearrow.MyApplication.boxStore;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -16,6 +19,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
+import io.objectbox.Box;
+import io.objectbox.query.PropertyQuery;
+import io.objectbox.query.Query;
 
 public class testSelection extends AppCompatActivity {
 
@@ -23,6 +31,8 @@ public class testSelection extends AppCompatActivity {
     testModelAdapter adapter;
     List<testModel> testList;
     Spinner spin1, spin2;
+    String typeOfTest;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,18 +49,20 @@ public class testSelection extends AppCompatActivity {
 
         hideSystemUI();
 
+
+
         recyclerView = findViewById(R.id.test_loader_Relative_layout);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        testList = new ArrayList<testModel>();
+        Intent red = getIntent();
+        typeOfTest = red.getStringExtra("typeOfTest");
 
 
-        testModel t = new testModel("gT1",1510453800000L,1,"GRAND");
-        testModel tg = new testModel("gT2",1510453800000L,1,"INICET");  // Get your data from wherever you store it
-        testModel tv = new testModel("gT3",1510453800000L,1,"MOK");
-        testList.add(t);
-        testList.add(tg);
-        testList.add(tv);
+
+        testList = getTestDetails(typeOfTest);
+
+
+
         // Get your data from wherever you store it
 // Get your data from wherever you store it
         adapter = new testModelAdapter(testList);
@@ -116,16 +128,26 @@ public class testSelection extends AppCompatActivity {
         });
     }
 
+    private List<testModel> getTestDetails(String typeOfTest) {
+         Box<test_model> testBox = boxStore.boxFor(test_model.class);
+
+         PropertyQuery pq = testBox.query(test_model_.subject.equal(typeOfTest)).build().property(test_model_.chapter_id);
+         String[] red = pq.distinct().findStrings();
+
+        List<testModel> testM = new ArrayList<>();
+
+         for(String r:red){
+             //GET TEH TEST MODEL FROM TEXT WITH CHAPTER_ID R
+             Query<test_model> q = testBox.query(test_model_.chapter_id.equal(r)).build();
+
+             testM.add(new testModel(q.findFirst().chapter,q.findFirst().time,1,typeOfTest));
 
 
+         }
 
 
-
-
-
-
-
-
+        return testM;
+    }
 
 
     private void hideSystemUI() {

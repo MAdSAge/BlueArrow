@@ -3,8 +3,10 @@ package pyq.qbank.bluearrow;
 import io.objectbox.annotation.Entity;
 import io.objectbox.annotation.Id;
 
+
 @Entity
-public class mcq_model {
+public class test_model {
+
     @Id
     long id;
 
@@ -26,11 +28,13 @@ public class mcq_model {
     int correctAnswer;
     boolean bookmark;
     String tags;
+    long time;
+    String chapter_id;
 
-    public mcq_model() {
+    public test_model() {
     }
 
-    public mcq_model(long id, String details, String mcq_id, String status, String question_title, String question_add, String question_img, String optionA, String optionB, String optionC, String optionD, String explanation, String subject, String chapter, boolean bookmarked, int answer, int correctAnswer, String tags) {
+    public test_model(long id, String details, String mcq_id, String status, String question_title, String question_add, String question_img, String optionA, String optionB, String optionC, String optionD, String explanation, String subject, String chapter, boolean bookmarked, int answer, int correctAnswer, String tags, long time,String chapter_id) {
         this.id = id;
         this.details = details;
         this.mcq_id = mcq_id;
@@ -49,6 +53,8 @@ public class mcq_model {
         this.answer = answer;
         this.correctAnswer = correctAnswer;
         this.tags = tags;
+        this.time = time;
+        this.chapter_id =chapter_id;
     }
 
     public boolean isBookmark() {
@@ -65,6 +71,26 @@ public class mcq_model {
 
     public void setTags(String tags) {
         this.tags = tags;
+    }
+
+    public String getChapter_id() {
+        return chapter_id;
+    }
+
+    public void setChapter_id(String chapter_id) {
+        this.chapter_id = chapter_id;
+    }
+
+    public void setBookmark(boolean bookmark) {
+        this.bookmark = bookmark;
+    }
+
+    public long getTime() {
+        return time;
+    }
+
+    public void setTime(long time) {
+        this.time = time;
     }
 
     public boolean isBookmarked() {

@@ -1,18 +1,29 @@
 package pyq.qbank.bluearrow;
 
 public class chapter_model {
+    private String lesson;
     private String chapterName;
     private int chapterQuestionCount;
     private int progress;
 
-    public chapter_model(String chapterName, int chapterQuestionCount, int progress) {
+
+    public chapter_model(String chapterName, int chapterQuestionCount, int progress,String lesson) {
         this.chapterName = chapterName;
         this.chapterQuestionCount = chapterQuestionCount;
         this.progress = progress;
+        this.lesson = lesson;
     }
 
     public String getChapterName() {
         return chapterName;
+    }
+
+    public String getLesson() {
+        return lesson;
+    }
+
+    public void setLesson(String lesson) {
+        this.lesson = lesson;
     }
 
     public void setChapterName(String chapterName) {

@@ -66,7 +66,6 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_margin="3dp"
-            android:src="@drawable/question_sign"
-            app:tint="@color/primary" />
+            android:src="@drawable/question_sign" />
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>
