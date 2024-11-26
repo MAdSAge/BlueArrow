@@ -19,12 +19,14 @@
             android:layout_height="match_parent">
 
             <TextView
+                android:id="@+id/chapterTitle"
                 android:layout_alignParentBottom="true"
-                android:layout_marginTop="22dp"
+                android:layout_marginTop="25dp"
+                android:paddingBottom="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="hello"
-                android:textStyle="bold"
+                android:textColor="@color/white"
                 android:textAlignment="center"
                 android:textSize="25sp"/>
 
@@ -78,7 +80,7 @@
                         android:layout_marginTop="8dp">
 
                         <TextView
-
+                            android:id="@+id/CorrectCount"
                             android:background="@color/white"
                             android:layout_width="0dp"
                             android:layout_marginRight="2dp"
@@ -91,7 +93,7 @@
                         <TextView
 
                             android:background="@color/white"
-
+                            android:id="@+id/WrongCount"
                             android:layout_marginRight="2dp"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -101,7 +103,7 @@
                             android:textColor="#EF5350" />
 
                         <TextView
-
+                            android:id="@+id/SkipCount"
                             android:background="@color/white"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"

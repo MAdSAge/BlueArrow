@@ -4,6 +4,7 @@ import static pyq.qbank.bluearrow.MyApplication.boxStore;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -19,7 +20,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import io.objectbox.Box;
 import io.objectbox.query.PropertyQuery;
@@ -29,13 +29,17 @@ public class testSelection extends AppCompatActivity {
 
     RecyclerView recyclerView;
     testModelAdapter adapter;
-    List<testModel> testList;
+    List<test_details> testList;
     Spinner spin1, spin2;
     String typeOfTest;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        //Getting data from the intent
+        Intent red = getIntent();
+        typeOfTest = red.getStringExtra("typeOfTest");
 
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
@@ -49,64 +53,34 @@ public class testSelection extends AppCompatActivity {
 
         hideSystemUI();
 
-
-
+        //Setting up the recycler view for loading the tests----------------------------------------
         recyclerView = findViewById(R.id.test_loader_Relative_layout);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        Intent red = getIntent();
-        typeOfTest = red.getStringExtra("typeOfTest");
-
-
-
+        ///loading data into the recycler view
         testList = getTestDetails(typeOfTest);
-
-
-
-        // Get your data from wherever you store it
-// Get your data from wherever you store it
-        adapter = new testModelAdapter(testList);
+        adapter = new testModelAdapter(testList, typeOfTest);
         recyclerView.setAdapter(adapter);
 
-        //setting up the spinners-------------------------------------------------------------
+        //setting up the spinners-------------------------------------------------------------------
         spin1 = findViewById(R.id.year_spinner);
         spin2 = findViewById(R.id.subject_spinner);
 
-        // Example data for Spinners
-        List<String> years = new ArrayList<>();
-        years.add("All");
-        years.add("2017");
-        years.add("2018");
-        years.add("2019");
-        years.add("2020");
-        years.add("2021");
-        years.add("2022");
-        years.add("2023");
-        years.add("2024");
-
-        List<String> subjects = new ArrayList<>();
-        subjects.add("All");
-        subjects.add("GRAND");
-        subjects.add("INICET");
-        subjects.add("MOK");
-
-
+        // Setting years for filtering for the spinners
+        List<String> years = getTestYears(typeOfTest);
         ArrayAdapter<String> yearAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, years);
         yearAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spin1.setAdapter(yearAdapter);
 
-// Set up the subject spinner with the subjects list
-        ArrayAdapter<String> subjectAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, subjects);
-        subjectAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spin2.setAdapter(subjectAdapter);
+        // Set up the subject spinner with the subjects list
 
         // Handling spinner selection changes
         spin1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 String selectedYear = spin1.getSelectedItem().toString();
-                String selectedSubject = spin2.getSelectedItem().toString();
-                adapter.spinnerFilter(selectedYear, selectedSubject);
+//                String selectedSubject = spin2.getSelectedItem().toString();
+                adapter.spinnerFilter(selectedYear, "All");
             }
 
             @Override
@@ -114,39 +88,58 @@ public class testSelection extends AppCompatActivity {
             }
         });
 
-        spin2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                String selectedYear = spin1.getSelectedItem().toString();
-                String selectedSubject = spin2.getSelectedItem().toString();
-                adapter.spinnerFilter(selectedYear, selectedSubject);
-            }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parentView) {
-            }
-        });
     }
 
-    private List<testModel> getTestDetails(String typeOfTest) {
-         Box<test_model> testBox = boxStore.boxFor(test_model.class);
+    private List<String> getTestYears(String typeOfTest) {
+        Box<test_details> testBox = boxStore.boxFor(test_details.class);
 
-         PropertyQuery pq = testBox.query(test_model_.subject.equal(typeOfTest)).build().property(test_model_.chapter_id);
-         String[] red = pq.distinct().findStrings();
+        // Total record count
+        long count = testBox.count();
+        Log.d("Data Check", "Total test_details count: " + count);
 
-        List<testModel> testM = new ArrayList<>();
+        // Inspect all records
+        List<test_details> allDetails = testBox.getAll();
+        for (test_details detail : allDetails) {
+            Log.d("Data Check", "testType: " + detail.getTest_type() + ", startDatetime: " + detail.getStart_datetime());
+        }
 
-         for(String r:red){
-             //GET TEH TEST MODEL FROM TEXT WITH CHAPTER_ID R
-             Query<test_model> q = testBox.query(test_model_.chapter_id.equal(r)).build();
+        // Verify matching testType
+        Log.d("Data Check", "typeOfTest being queried: " + typeOfTest);
 
-             testM.add(new testModel(q.findFirst().chapter,q.findFirst().time,1,typeOfTest));
+        // Base query to check matching records
+        Query<test_details> baseQuery = testBox.query(test_details_.test_type.equal(typeOfTest)).build();
+        List<test_details> results = baseQuery.find();
+        Log.d("Query Check", "Number of matching records: " + results.size());
+
+        if (results.isEmpty()) {
+            Log.d("Query Check", "No records found for typeOfTest: " + typeOfTest);
+            return null;
+        }
+
+        // Distinct query on startDatetime
+        PropertyQuery propertyQuery = baseQuery.property(test_details_.start_datetime).distinct();
+        long[] distinctStartDatetimes = propertyQuery.findLongs();
+        List<String> years = new ArrayList<>();
+        for (long time : distinctStartDatetimes) {
+            if (!years.contains(adapter.getYearString(time))) {
+                years.add(adapter.getYearString(time));
+            }
 
 
-         }
+        }
+        return years;
+    }
 
 
-        return testM;
+    private List<test_details> getTestDetails(String typeOfTest) {
+        Box<test_details> testBox = boxStore.boxFor(test_details.class);
+
+        Query pq = testBox.query(test_details_.test_type.equal(typeOfTest)).order(test_details_.start_datetime).build();
+        List<test_details> red = pq.find();
+
+
+        return red;
     }
 
 

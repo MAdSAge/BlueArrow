@@ -2,7 +2,6 @@ package pyq.qbank.bluearrow;
 
 import android.content.Intent;
 import android.icu.text.SimpleDateFormat;
-import android.icu.util.Calendar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,12 +18,14 @@ import java.util.List;
 import java.util.Locale;
 
 public class testModelAdapter extends RecyclerView.Adapter<testModelAdapter.testViewHolder> {
-    List<testModel> testList;
-    List<testModel> filterTestList;
+    List<test_details> testList;
+    List<test_details> filterTestList;
+    String typeOfTest;
 
-    public testModelAdapter(List<testModel> testList) {
+    public testModelAdapter(List<test_details> testList, String typeOfTest) {
         this.testList = testList;
         this.filterTestList = new ArrayList<>(testList);
+        this.typeOfTest = typeOfTest;
     }
 
 
@@ -39,22 +40,32 @@ public class testModelAdapter extends RecyclerView.Adapter<testModelAdapter.test
 
     @Override
     public void onBindViewHolder(@NonNull testModelAdapter.testViewHolder holder, int position) {
-        testModel item = filterTestList.get(position);
+        test_details item = filterTestList.get(position);
 
         holder.testTitle.setText(item.getTitle());
-        holder.testYear.setText(getYearString(item.getYear()));
-        holder.testType.setText(item.getType());
+        holder.testYear.setText(getYearString(item.getStart_datetime()));
+        holder.testType.setText(item.getMax_mcq_count()+ " -McQ's");
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), mcq_solving.class);
+                Intent intent = new Intent(v.getContext(), qbank_mcq_solving.class);
                 intent.putExtra("testTitle", item.getTitle());
+                intent.putExtra("testID", item.getChapter_id());
                 intent.putExtra("testMode", true);
                 // write logic for sending data
                 v.getContext().startActivity(intent);
             }
         });
+
+        if (item.is_coming_soon) {
+            holder.itemView.setEnabled(false); // Disables interaction
+            holder.itemView.setAlpha(0.5f);   // Makes it look "disabled"
+        } else {
+            holder.itemView.setEnabled(true); // Enables interaction
+            holder.itemView.setAlpha(1.0f);   // Restores normal appearance
+        }
+
 
 
 
@@ -74,9 +85,9 @@ public class testModelAdapter extends RecyclerView.Adapter<testModelAdapter.test
         if (selectedYear.equals("All") && selectedSubject.equals("All")) {
             filterTestList.addAll(testList);
         } else {
-            for (testModel item : testList) {
-                String itemYear = getYearString(item.getYear());
-                String itemType = item.getType();
+            for (test_details item : testList) {
+                String itemYear = getYearString(item.getStart_datetime());
+                String itemType = item.getTest_type();
 
                 boolean matchesYear = selectedYear.equals("All") || itemYear.equals(selectedYear);
                 boolean matchesSubject = selectedSubject.equals("All") || itemType.equals(selectedSubject);

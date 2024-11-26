@@ -18,7 +18,12 @@
             android:padding="16dp"
             app:cardElevation="8dp">
 
-
+            <ImageView
+                android:id="@+id/checkMark"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:src="@drawable/check"
+                android:visibility="invisible"/>
 
 
             <LinearLayout
@@ -67,20 +72,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawablePadding="4dp"
-                android:text="45 chapters"
+                android:text="45 Q"
                 android:layout_marginLeft="2dp"
                 android:textColor="@color/gray"
                 android:textSize="14sp" />
 
-            <com.google.android.material.progressindicator.CircularProgressIndicator
-                android:id="@+id/chapterProgressIndicator"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_gravity="center_vertical"
-                android:progress="20"
-                app:indicatorColor="@color/primary"
-                app:indicatorSize="48dp"
-                app:trackColor="@color/white"
-                app:trackThickness="4dp" />
+
+
+
+
+
         </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

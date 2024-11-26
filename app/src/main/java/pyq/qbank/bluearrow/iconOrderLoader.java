@@ -18,6 +18,12 @@ public class iconOrderLoader {
     public String chapter_url;
     public String chapter_thumbnail;
     public int chapter_order;
+    public int chapter_progress;
+    public boolean chapter_completed;
+    public int mcq_count;
+    public int skip_count;
+    public int correct_count;
+    public int wrong_count;
 
     public iconOrderLoader(){}
 
@@ -33,6 +39,52 @@ public class iconOrderLoader {
         this.chapter_url = chapter_url;
         this.chapter_thumbnail = chapter_thumbnail;
         this.chapter_order = chapter_order;
+    }
+
+    public int getSkip_count() {
+        return skip_count;
+    }
+
+    public void setSkip_count(int skip_count) {
+        this.skip_count = skip_count;
+    }
+
+    public int getCorrect_count() {
+        return correct_count;
+    }
+
+    public void setCorrect_count(int correct_count) {
+        this.correct_count = correct_count;
+    }
+
+    public int getWrong_count() {
+        return wrong_count;
+    }
+
+    public void setWrong_count(int wrong_count) {
+        this.wrong_count = wrong_count;
+    }
+
+    public int getChapter_progress() {
+        return chapter_progress;
+    }
+    public int getMcq_count() {
+        return mcq_count;
+    }
+    public void setMcq_count(int mcq_count) {
+        this.mcq_count = mcq_count;
+    }
+
+    public void setChapter_progress(int chapter_progress) {
+        this.chapter_progress = chapter_progress;
+    }
+
+    public boolean isChapter_completed() {
+        return chapter_completed;
+    }
+
+    public void setChapter_completed(boolean chapter_completed) {
+        this.chapter_completed = chapter_completed;
     }
 
     public long getId() {

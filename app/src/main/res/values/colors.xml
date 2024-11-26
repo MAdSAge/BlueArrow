@@ -2,9 +2,11 @@
 <resources>
  <!-- Primary Colors -->
  <color name="primary">#1976D2</color>
+ <color name="primary_light">#C848AAEB</color>
  <color name="purple_200">#4A148C</color>
  <color name="purple_500">#9C27B0</color>
  <color name="purple_700">#311B92</color>
+ <color name="lightRed">#ed8e8e</color>
 
  <!-- Accent Colors -->
  <color name="teal_200">#03DAC5</color>

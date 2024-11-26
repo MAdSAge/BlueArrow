@@ -1,69 +1,37 @@
 package pyq.qbank.bluearrow;
 
-
 import io.objectbox.annotation.Entity;
 import io.objectbox.annotation.Id;
 
 @Entity
-public class test_details {
+public class entityTest {
 
     @Id
-    long id;
+    public long id;
 
-    String chapter_id;
-    int course_id;
-    int duration;
-    long end_datetime;
-    String intro;
-    boolean is_coming_soon;
-    boolean is_paid;
-    boolean is_review_avl;
-    long last_updated;
-    int max_mcq_count;
-    int mcq_count;
-    float possible_score;
-    boolean published_status;
-    int solved;
-    int sort_order;
-    long start_datetime;
-    int status;
-    String subject_id;
-    String test_type;
-    String title;
+    private String chapter_id;
+    private int course_id;
+    private int duration;
+    private long end_datetime;
+    private String intro;
+    private boolean is_coming_soon;
+    private boolean is_paid;
+    private boolean is_review_avl;
+    private long last_updated;
+    private int max_mcq_count;
+    private int mcq_count;
+    private int possible_score;
+    private String published_status;
+    private int solved;
+    private int sort_order;
+    private long start_datetime;
+    private int status;
+    private String subject_id;
+    private String test_type;
+    private String title;
 
+    public entityTest() {
 
-    public test_details() {
-    }
-
-    public test_details(String chapter_id, int course_id, int duration, long end_datetime, String intro, boolean is_coming_soon, boolean is_paid, boolean is_review_avl, long last_updated, int max_mcq_count, int mcq_count, float possible_score, boolean published_status, int solved, int sort_order, long start_datetime, int status, String subject_id, String test_type, String title) {
-        this.chapter_id = chapter_id;
-        this.course_id = course_id;
-        this.duration = duration;
-        this.end_datetime = end_datetime;
-        this.intro = intro;
-        this.is_coming_soon = is_coming_soon;
-        this.is_paid = is_paid;
-        this.is_review_avl = is_review_avl;
-        this.last_updated = last_updated;
-        this.max_mcq_count = max_mcq_count;
-        this.mcq_count = mcq_count;
-        this.possible_score = possible_score;
-        this.published_status = published_status;
-        this.solved = solved;
-        this.sort_order = sort_order;
-        this.start_datetime = start_datetime;
-        this.status = status;
-        this.subject_id = subject_id;
-        this.test_type = test_type;
-        this.title = title;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getChapter_id() {
@@ -154,19 +122,19 @@ public class test_details {
         this.mcq_count = mcq_count;
     }
 
-    public float getPossible_score() {
+    public int getPossible_score() {
         return possible_score;
     }
 
-    public void setPossible_score(float possible_score) {
+    public void setPossible_score(int possible_score) {
         this.possible_score = possible_score;
     }
 
-    public boolean isPublished_status() {
+    public String getPublished_status() {
         return published_status;
     }
 
-    public void setPublished_status(boolean published_status) {
+    public void setPublished_status(String published_status) {
         this.published_status = published_status;
     }
 

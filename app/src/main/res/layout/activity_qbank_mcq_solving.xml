@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- Top bar with module name -->
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:id="@+id/topbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="20dp"
+        android:paddingBottom="5dp"
+        android:paddingHorizontal="15dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/timerTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="00:00"
+            android:textSize="22sp"
+            android:textColor="@android:color/black"
+            android:paddingEnd="8dp" />
+
+        <TextView
+            android:id="@+id/moduleName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Module name"
+            android:textSize="20sp"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:layout_weight="1" />
+
+        <!-- Time displayed using TextClock -->
+
+        <ImageView
+            android:id="@+id/quizNavButton"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/widget"
+            android:scaleType="fitCenter"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="@drawable/ripple_background"
+            app:tint="#0F5AD7" />
+
+
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressTimer"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:layout_marginBottom="5dp"
+        android:backgroundTint="@color/light_gray"
+        android:indeterminate="false"
+        android:max="60"
+        android:progress="50"
+        android:progressTint="@color/primary" />
+
+    <!-- Scrollable content inside NestedScrollView -->
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/mcqSolving"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <!-- RecyclerView for displaying topic cards horizontally -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/mcqRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- Buttons at the bottom of the screen -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <Button
+            android:layout_marginHorizontal="2dp"
+            android:id="@+id/previousButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="@color/primary"
+            android:visibility="gone"
+            android:text="Previous"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:layout_marginHorizontal="2dp"
+            android:id="@+id/nextButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="@color/primary"
+            android:text="Next"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+
+</LinearLayout>

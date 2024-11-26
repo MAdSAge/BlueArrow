@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
-import java.util.Map;
 
 public class bookMarkSelectionAdapter extends RecyclerView.Adapter<bookMarkSelectionAdapter.bookMarkSelectionViewHolder> {
 
@@ -41,7 +40,7 @@ public class bookMarkSelectionAdapter extends RecyclerView.Adapter<bookMarkSelec
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), mcq_solving.class);
+                Intent intent = new Intent(view.getContext(), qbank_mcq_solving.class);
                 intent.putExtra("testMode",false);
                 view.getContext().startActivity(intent);
 

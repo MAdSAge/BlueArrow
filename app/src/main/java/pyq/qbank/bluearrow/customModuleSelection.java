@@ -182,7 +182,7 @@ public class customModuleSelection extends AppCompatActivity implements customMo
 
         System.out.println(red);
 
-        Intent intent = new Intent(customModuleSelection.this, mcq_solving.class);
+        Intent intent = new Intent(customModuleSelection.this, qbank_mcq_solving.class);
         intent.putExtra("data",(Serializable) red);
 
         // TODO: generate a query string to pass the activity insted of data after completing the Data base set UP

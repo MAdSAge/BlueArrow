@@ -3,13 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="12dp"
+    android:layout_margin="3dp"
+    android:background="?attr/selectableItemBackground"
+    android:padding="5dp"
     app:cardElevation="4dp"
     app:strokeColor="@color/card_border"
-    app:strokeWidth="1dp"
-    android:padding="5dp"
-    android:layout_margin="3dp"
-    android:background="?attr/selectableItemBackground">
+    app:strokeWidth="1dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,24 +21,17 @@
             style="@style/TextAppearance.MaterialComponents.Headline5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingBottom="8dp"
             android:text="Sample Title"
-            android:textColor="@color/primary"
-            android:paddingBottom="8dp" />
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
-
-            <TextView
-                android:id="@+id/tvYear"
-                style="@style/TextAppearance.MaterialComponents.Subtitle1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="2022"
-                android:textColor="@color/secondary_text" />
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/tvType"
@@ -48,8 +40,18 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Type A"
-                android:textColor="@color/primary"
-                android:gravity="end" />
+                android:textStyle="bold"
+                android:textColor="@color/primary" />
+
+            <TextView
+                android:id="@+id/tvYear"
+                style="@style/TextAppearance.MaterialComponents.Subtitle1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:text="2022"
+                android:textColor="@color/primary" />
 
         </LinearLayout>
 

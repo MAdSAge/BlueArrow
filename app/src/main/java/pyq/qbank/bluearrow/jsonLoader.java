@@ -9,6 +9,8 @@ import java.io.InputStreamReader;
 import java.io.IOException;
 import java.lang.reflect.Array;
 
+
+//TODO: implementing the Compressed json import from TOR URLS
 public class jsonLoader {
     private static final String TAG = "JsonLoader";
     private static final Gson gson = new Gson();
@@ -28,26 +30,20 @@ public class jsonLoader {
     }
 
     // Existing methods converted to use generic method
-    public static mcq_model[] loadQbankMcq(Context context) {
-        return loadJsonData(context, "questions.json", mcq_model[].class);
+    public static entitySubject[] loadSubjects(Context context) {
+        return loadJsonData(context, "subject_order.json", entitySubject[].class);
     }
 
-    public static iconOrderLoader[] loadIconOrder(Context context) {
-        return loadJsonData(context, "order_links.json", iconOrderLoader[].class);
+    public static entityChapter[] loadChapters(Context context) {
+        return loadJsonData(context, "chapter_order.json", entityChapter[].class);
     }
 
-    public static test_model[] miniTestMcqLoaders(Context context) {
-        return loadJsonData(context, "mini_test.json", test_model[].class);
+    public static entityTest[] loadTests(Context context) {
+        return loadJsonData(context, "test_order.json", entityTest[].class);
     }
 
-    public static test_model[] subjectTestMcqLoader(Context context) {
-        return loadJsonData(context, "subject_test.json", test_model[].class);
-    }
-    public static test_details[]testDetailLoader(Context context){
-        return loadJsonData(context,"all_test_details_pg.json",test_details[].class);
-    }
 
-    public static test_model[] grandTestMcqLoader(Context context, String fileName) {
-        return loadJsonData(context, fileName, test_model[].class);
+    public static entityMcq[] grandTestMcqLoader(Context context, String fileName) {
+        return loadJsonData(context, fileName, entityMcq[].class);
     }
 }

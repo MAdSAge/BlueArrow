@@ -23,8 +23,7 @@ import io.objectbox.Box;
 
 public class select_mode extends AppCompatActivity {
 
-    private MaterialCardView cardQBank, cardGrandTest, cardMiniTest,
-            cardSubjectTest, cardBookmarks, cardCustomModules;
+    private MaterialCardView cardQBank, cardGrandTest, cardMiniTest, cardSubjectTest, cardBookmarks, cardCustomModules;
     private Box<mcq_model> mcqBox;
     private ProgressBar progressBar; // ProgressBar for feedback during data load
 
@@ -55,16 +54,26 @@ public class select_mode extends AppCompatActivity {
         // Card routes setup
         cardQBank.setOnClickListener(v -> startActivity(new Intent(select_mode.this, qbankSubjectSelection.class)));
 
-        cardGrandTest.setOnClickListener(v->{
+        cardGrandTest.setOnClickListener(v -> {
 
             Intent red = new Intent(select_mode.this, testSelection.class);
-            red.putExtra("typeOfTest","grand");
+            red.putExtra("typeOfTest", "grand");
             startActivity(red);
 
         });
 
-        cardMiniTest.setOnClickListener(v -> startActivity(new Intent(select_mode.this, testSelection.class)));
-        cardSubjectTest.setOnClickListener(v -> startActivity(new Intent(select_mode.this, testSelection.class)));
+        cardMiniTest.setOnClickListener(v -> {
+
+            Intent go_tomini = new Intent(select_mode.this, testSelection.class);
+            go_tomini.putExtra("typeOfTest", "mini");
+            startActivity(go_tomini);
+
+        });
+        cardSubjectTest.setOnClickListener(v -> {
+            Intent go_tomini = new Intent(select_mode.this, testSelection.class);
+            go_tomini.putExtra("typeOfTest", "subject");
+            startActivity(go_tomini);
+        });
         cardBookmarks.setOnClickListener(v -> startActivity(new Intent(select_mode.this, bookmarkSelection.class)));
 
         // Load data (check and import if not already done)
