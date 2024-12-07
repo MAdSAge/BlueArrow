@@ -26,6 +26,24 @@ public class entityMcq {
     private String subject;
     private String tags;
     private  long time;
+    private int userAnswer;
+    private boolean bookMarked;
+
+    public int getUserAnswer() {
+        return userAnswer;
+    }
+
+    public void setUserAnswer(int userAnswer) {
+        this.userAnswer = userAnswer;
+    }
+
+    public boolean isBookMarked() {
+        return bookMarked;
+    }
+
+    public void setBookMarked(boolean bookMarked) {
+        this.bookMarked = bookMarked;
+    }
 
     public entityMcq(){
 

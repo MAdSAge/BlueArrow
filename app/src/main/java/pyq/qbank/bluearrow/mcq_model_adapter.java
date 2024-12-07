@@ -25,20 +25,20 @@ import io.objectbox.Box;
 
 public class mcq_model_adapter extends RecyclerView.Adapter<mcq_model_adapter.mcqViewHolder> {
 
-    private final List<mcq_model> filteredMcqList; // Filtered list for displaying
-    List<mcq_model> mcqList;
+    private final List<entityMcq> filteredMcqList; // Filtered list for displaying
+    List<entityMcq> mcqList;
     boolean ReviewMode;
-    Box<mcq_model> mcq_box;
+    Box<entityMcq> mcq_box;
     private Set<String> checkedItems = new HashSet<>(); // Track checked items
     private pasueProgressBar pasueProgressBar; // Reference to the interface
 
 
-    public mcq_model_adapter(List<mcq_model> mcqList, boolean ReviewMode, pasueProgressBar p) {
+    public mcq_model_adapter(List<entityMcq> mcqList, boolean ReviewMode, pasueProgressBar p) {
         this.mcqList = mcqList;
         this.ReviewMode = ReviewMode;
         this.filteredMcqList = new ArrayList<>(mcqList);
         this.pasueProgressBar = p;
-        this.mcq_box = boxStore.boxFor(mcq_model.class);
+        this.mcq_box = boxStore.boxFor(entityMcq.class);
     }
 
     @NonNull
@@ -50,10 +50,10 @@ public class mcq_model_adapter extends RecyclerView.Adapter<mcq_model_adapter.mc
 
     @Override
     public void onBindViewHolder(@NonNull mcq_model_adapter.mcqViewHolder holder, int position) {
-        mcq_model mcq = filteredMcqList.get(position);
+        entityMcq mcq = filteredMcqList.get(position);
         holder.questionTitle.setText(mcq.getQuestion_title());
 
-        holder.bookMark.setImageResource(mcq.isBookmarked() ? R.drawable.ribbon_selected : R.drawable.ribbon);
+        holder.bookMark.setImageResource(mcq.isBookMarked() ? R.drawable.ribbon_selected : R.drawable.ribbon);
         holder.optionA.setText(mcq.getOptionA().replaceAll("\\n", ""));
         holder.optionB.setText(mcq.getOptionB().replaceAll("\\n", ""));
         holder.optionC.setText(mcq.getOptionC().replaceAll("\\n", ""));
@@ -90,14 +90,14 @@ public class mcq_model_adapter extends RecyclerView.Adapter<mcq_model_adapter.mc
 
         holder.bookMark.setOnClickListener(v -> {
             // Toggle the bookmark status
-            boolean isCurrentlyBookmarked = mcq.isBookmarked();
-            mcq.setBookmarked(!isCurrentlyBookmarked);
+            boolean isCurrentlyBookmarked = mcq.isBookMarked();
+            mcq.setBookMarked(!isCurrentlyBookmarked);
 
             // Update the icon based on the new state
-            holder.bookMark.setImageResource(mcq.isBookmarked() ? R.drawable.ribbon_selected : R.drawable.ribbon);
+            holder.bookMark.setImageResource(mcq.isBookMarked() ? R.drawable.ribbon_selected : R.drawable.ribbon);
 
             // Perform database operations based on the new state
-            if (mcq.isBookmarked()) {
+            if (mcq.isBookMarked()) {
                 bookmarkMcq(mcq, holder); // Handle bookmarking
             } else {
                 unBookMarkMcq(mcq, holder); // Handle unbookmarking
@@ -107,7 +107,7 @@ public class mcq_model_adapter extends RecyclerView.Adapter<mcq_model_adapter.mc
 
     }
 
-    private void bookmarkMcq(mcq_model mcq, mcqViewHolder holder) {
+    private void bookmarkMcq(entityMcq mcq, mcqViewHolder holder) {
 
         // Update the database
         mcq_box.put(mcq);
@@ -116,7 +116,7 @@ public class mcq_model_adapter extends RecyclerView.Adapter<mcq_model_adapter.mc
         Toast.makeText(holder.itemView.getContext(), "MCQ bookmarked", Toast.LENGTH_SHORT).show();
     }
 
-    private void unBookMarkMcq(mcq_model mcq, mcqViewHolder holder) {
+    private void unBookMarkMcq(entityMcq mcq, mcqViewHolder holder) {
 
 
         // Update the database
@@ -152,9 +152,9 @@ public class mcq_model_adapter extends RecyclerView.Adapter<mcq_model_adapter.mc
         return filteredMcqList.size();
     }
 
-    private void mcqAnswerChecker(mcq_model mcq, mcqViewHolder holder, int selectedAnswer) {
+    private void mcqAnswerChecker(entityMcq mcq, mcqViewHolder holder, int selectedAnswer) {
 
-        mcq.setAnswer(selectedAnswer);
+        mcq.setUserAnswer(selectedAnswer);
 
 
 
@@ -188,7 +188,7 @@ public class mcq_model_adapter extends RecyclerView.Adapter<mcq_model_adapter.mc
         mcq_box.put(mcq);
     }
 
-    public void timeUp(mcq_model currentMcq, mcqViewHolder currentHolder, int i) {
+    public void timeUp(entityMcq currentMcq, mcqViewHolder currentHolder, int i) {
         mcqAnswerChecker(currentMcq, currentHolder, i);
     }
 

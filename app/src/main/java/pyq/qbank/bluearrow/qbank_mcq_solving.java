@@ -30,7 +30,7 @@ public class qbank_mcq_solving extends AppCompatActivity implements pasueProgres
     Box<iconOrderLoader> red;
     private RecyclerView recyclerView;
     private mcq_model_adapter adapter;
-    private List<mcq_model> topicList;
+    private List<entityMcq> topicList;
     private Button previousButton, nextButton, doReview, solveNextModule;
     private boolean Mode;
     private String chapterTitle;
@@ -164,7 +164,7 @@ public class qbank_mcq_solving extends AppCompatActivity implements pasueProgres
             // Check if the position is valid
             if (position != RecyclerView.NO_POSITION) {
                 // Get the MCQ at the current position
-                mcq_model currentMcq = topicList.get(position);
+                entityMcq currentMcq = topicList.get(position);
 
                 // Get the ViewHolder for the current position
                 RecyclerView.ViewHolder viewHolder = recyclerView.findViewHolderForAdapterPosition(position);
@@ -182,9 +182,9 @@ public class qbank_mcq_solving extends AppCompatActivity implements pasueProgres
     }
 
 
-    private List<mcq_model> getMcQs(String chapterTitle) {
-        Box<mcq_model> mcqBox = boxStore.boxFor(mcq_model.class);
-        List<mcq_model> mcqList = mcqBox.query(mcq_model_.chapter.equal(chapterTitle)).build().find();
+    private List<entityMcq> getMcQs(String chapterTitle) {
+        Box<entityMcq> mcqBox = boxStore.boxFor(entityMcq.class);
+        List<entityMcq> mcqList = mcqBox.query(entityMcq_.chapter.equal(chapterTitle)).build().find();
         // add a data base cleaner class fro setting up correct answers or edit the data base to do so later
         return mcqList;
     }
@@ -252,8 +252,8 @@ public class qbank_mcq_solving extends AppCompatActivity implements pasueProgres
 
 
         // Loop through the topicList and calculate scores
-        for (mcq_model m : topicList) {
-            int userAnswer = m.getAnswer();
+        for (entityMcq m : topicList) {
+            int userAnswer = m.getUserAnswer();
             int correctAnswer = m.getCorrectAnswer();
 
             if (userAnswer == 0) {
