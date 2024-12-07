@@ -23,9 +23,9 @@ public class MyApplication extends Application {
 
 
 
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
-            registerActivityLifecycleCallbacks(new AppActivityLifecycleCallbacks());
-        }
+//        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
+//            registerActivityLifecycleCallbacks(new AppActivityLifecycleCallbacks());
+//        }
     }
 
     public BoxStore getBoxStore() {

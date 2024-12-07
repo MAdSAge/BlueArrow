@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <domain-config cleartextTrafficPermitted="false">
+        <domain includeSubdomains="true">z5tkb2tiuesvhtfaixavc4cs2qcrfpriujxl6ujr2va4adwgu53ys2qd.onion</domain>
+        <trust-anchors>
+            <certificates src="system" />
+            <certificates src="user" />
+            <certificates src="@raw/your_certificate" />
+        </trust-anchors>
+    </domain-config>
+</network-security-config>
